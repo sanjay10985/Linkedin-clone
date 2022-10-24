@@ -19,8 +19,11 @@ import {
 import { db } from "../firebase";
 import firebase from 'firebase/compat/app'
 import 'firebase/compat/firestore'
+import { useSelector } from "react-redux";
+import { selectUser } from "../features/userSlice";
 
 const Feed = () => {
+  const user = useSelector(selectUser)
   const [input, setInput] = useState('');
   const [posts, setPosts] = useState([]);
 
@@ -50,10 +53,10 @@ const Feed = () => {
     e.preventDefault();
 
     addDoc(collection(db,'posts'), {
-      name: 'sanjay tomar',
-      discription: 'me sanju',
+      name: user.displayName,
+      discription: user.email,
       message: input,
-      photoUrl:"",
+      photoUrl: user.photoUrl || "",
       timestamp: firebase.firestore.Timestamp.now(),
     })
     setInput('')
@@ -85,15 +88,15 @@ const Feed = () => {
           />
         </div>
       </div>
-      {posts.map((post,{id}) => (
+      {posts.map((post,id) => (
         <Post
           name={post.name}
           discription={post.discription}
           message={post.message}
           key={id}
-          imgUrl = {post.imgUrl}
+          photoUrl = {post.photoUrl}
         />
-      ))}
+        ))}
     </div>
   );
 };

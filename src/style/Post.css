@@ -23,10 +23,16 @@
     overflow-wrap: anywhere;
 }
 
+.post__body > p{
+    margin-left: 10px;
+    padding-top: 10px;
+}
+
 .post__info > h2{
     font-size: 15px;
 }
 
 .post__buttons{
     display: flex;
+    justify-content: space-around;
 }

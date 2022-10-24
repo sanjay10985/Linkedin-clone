@@ -1,4 +1,4 @@
-import { Avatar } from '@mui/material'
+import { Avatar, Icon, IconButton } from '@mui/material'
 import React from 'react'
 import '../style/Post.css'
 import InputOptions from './InputOptions'
@@ -8,13 +8,14 @@ import ShareOutlinedIcon from '@mui/icons-material/ShareOutlined';
 import SendOutlinedIcon from '@mui/icons-material/SendOutlined';
 
 
+
 const Post = ({name,discription,message,photoUrl}) => {
 
-
+  
   return (
     <div className='post'>
       <div className="post__header">
-        <Avatar/>
+        <Avatar src={photoUrl}>{name[0]}</Avatar>
         <div className="post__info">
             <h2>{name}</h2>
             <p>{discription}</p>
